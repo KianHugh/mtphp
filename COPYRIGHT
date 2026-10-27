@@ -1,0 +1,11 @@
+mtphp 框架
+=========
+
+版权所有 (c) 武汉麦麦心选网络科技有限公司
+Copyright (c) Wuhan Maimai Xinxuan Network Technology Co., Ltd.
+
+本框架（含核心源码 mtphp/、示例应用 app/、配套文档与使用手册）的著作权归
+武汉麦麦心选网络科技有限公司所有。
+
+开源许可证：MIT（详见 LICENSE / composer.json 中的 license 字段）。
+在遵守 MIT 许可证条款的前提下，可自由使用、复制、修改与分发本框架。

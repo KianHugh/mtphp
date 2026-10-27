@@ -1,0 +1,36 @@
+/vendor/
+/runtime/cache/*
+/runtime/views/*
+/runtime/logs/*
+/runtime/server.log
+/runtime/queue/
+!/runtime/cache/.gitkeep
+!/runtime/views/.gitkeep
+!/runtime/logs/.gitkeep
+
+# 密钥 / 凭证：切勿提交（含 SSH / 隧道私钥）
+.ssh/
+
+# 文档站 / 应用运行期编译产物
+public/runtime/
+
+# AI 上下文文件：保留在磁盘（供 LLM/AI 助手阅读），但排除出版本库
+LLMS.md
+llms.txt
+SKILL.md
+
+# 本地开发笔记（仅本地维护，含内部设计决策，勿提交）
+MEMORY.md
+
+# 服务器 / 主机环境产物（含硬编码路径或默认页，勿提交）
+.user.ini
+index.html
+404.html
+
+.idea/
+.vscode/
+.DS_Store
+.env
+
+# Windows 保留设备名文件（CLI 重定向误生成，无法删除，本地排除即可）
+/nul

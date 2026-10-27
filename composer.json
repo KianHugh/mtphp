@@ -1,0 +1,47 @@
+{
+    "name": "mtphp/mtphp",
+    "description": "mtphp - 高性能、高并发 PHP 框架",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "武汉麦麦心选网络科技有限公司",
+            "role": "版权所有 (c) Copyright holder"
+        }
+    ],
+    "keywords": [
+        "framework",
+        "php",
+        "high-performance",
+        "swoole",
+        "coroutine",
+        "zero-dependency",
+        "queue",
+        "orm",
+        "migration"
+    ],
+    "bin": [
+        "bin/mtphp"
+    ],
+    "require": {
+        "php": "^8.0",
+        "ext-pdo": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mtphp\\": "mtphp/"
+        },
+        "files": [
+            "mtphp/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

@@ -1,0 +1,76 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+// 版权所有 (c) 武汉麦麦心选网络科技有限公司
+
+/**
+ * mtphp 命令行入口
+ *
+ * 用法：
+ *   php bin/mtphp list
+ *   php bin/mtphp key:generate
+ *   php bin/mtphp routes:list
+ *   php bin/mtphp migrate
+ *   php bin/mtphp migrate:rollback
+ *   php bin/mtphp queue:work --queue=default --sleep=2
+ *   php bin/mtphp serve --host=127.0.0.1 --port=8000
+ *   php bin/mtphp schedule:run          # 执行到期定时/重复任务（配合系统 cron）
+ *   php bin/mtphp schedule:list         # 列出全部调度任务与下次运行时间
+ *   php bin/mtphp schedule:work         # 常驻守护，每分钟自动触发（免系统 cron）
+ *
+ * 本入口会自动引导框架应用（若存在 config/），从而让 routes:list / migrate 等
+ * 命令能读取配置、连接数据库、访问路由表。
+ */
+
+$root = dirname(__DIR__);
+
+// 自动加载：优先 Composer，否则回退到内置 PSR-4 加载器
+if (file_exists($root . '/vendor/autoload.php')) {
+    require_once $root . '/vendor/autoload.php';
+} else {
+    spl_autoload_register(function (string $class) use ($root): void {
+        foreach (['Mtphp\\' => $root . '/mtphp/', 'App\\' => $root . '/app/'] as $prefix => $base) {
+            if (strncmp($class, $prefix, strlen($prefix)) === 0) {
+                $file = $base . str_replace('\\', '/', substr($class, strlen($prefix))) . '.php';
+                if (is_file($file)) {
+                    require $file;
+                }
+                return;
+            }
+        }
+    });
+}
+
+// 引导框架应用（存在 config/ 时），让配置/路由/数据库可用的命令得以运行
+$app = null;
+if (is_dir($root . '/config')) {
+    try {
+        $app = new \Mtphp\App($root);
+    } catch (\Throwable $e) {
+        fwrite(STDERR, '[warn] 引导应用失败（配置相关命令可能不可用）：' . $e->getMessage() . PHP_EOL);
+        $app = null;
+    }
+}
+
+$console = new \Mtphp\Console\Application($root);
+if ($app !== null) {
+    $console->setApp($app);
+}
+$console->add(new \Mtphp\Console\Commands\KeyGenerate());
+$console->add(new \Mtphp\Console\Commands\RoutesList());
+$console->add(new \Mtphp\Console\Commands\Migrate());
+$console->add(new \Mtphp\Console\Commands\MigrateRollback());
+$console->add(new \Mtphp\Console\Commands\QueueWork());
+$console->add(new \Mtphp\Console\Commands\Serve());
+$console->add(new \Mtphp\Console\Commands\ScheduleRun());
+$console->add(new \Mtphp\Console\Commands\ScheduleList());
+$console->add(new \Mtphp\Console\Commands\ScheduleWork());
+$console->add(new \Mtphp\Console\Commands\Seed());
+$console->add(new \Mtphp\Console\Commands\MakeSeeder());
+$console->add(new \Mtphp\Console\Commands\MakeController());
+$console->add(new \Mtphp\Console\Commands\MakeMigration());
+$console->add(new \Mtphp\Console\Commands\MakeModel());
+$console->add(new \Mtphp\Console\Commands\MakeMiddleware());
+
+exit($console->run($argv));
