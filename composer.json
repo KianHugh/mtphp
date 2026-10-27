@@ -1,5 +1,5 @@
 {
-    "name": "mtphp/mtphp",
+    "name": "kianhugh/mtphp",
     "description": "mtphp - 高性能、高并发 PHP 框架",
     "type": "library",
     "license": "MIT",

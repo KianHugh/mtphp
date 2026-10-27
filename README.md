@@ -1,5 +1,9 @@
 # mtphp
 
+[![CI](https://github.com/KianHugh/mtphp/actions/workflows/ci.yml/badge.svg)](https://github.com/KianHugh/mtphp/actions)
+[![Packagist](https://img.shields.io/packagist/v/kianhugh/mtphp.svg)](https://packagist.org/packages/kianhugh/mtphp)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
+
 > 版权所有 (c) 武汉麦麦心选网络科技有限公司
 
 高性能、高并发的现代 PHP 框架。路由、数据库连接、事务、视图模板、中间件一应俱全，并内置轻量模型、文件缓存、文件日志，**零配置即可用、配有详尽中文注释**，原生支持 Swoole 常驻内存 + 协程 + 连接池。
@@ -23,6 +27,16 @@ runtime/      运行时生成（路由缓存 / 模板编译 / 日志）
 - 高并发常驻模式需 `swoole` 扩展（仅 Linux / WSL）
 
 > Windows 开发机请自行安装 PHP ≥ 8.0（建议 8.3，需含 `php.ini` + OPcache/JIT），并确保 `php` 已进入系统 PATH；随后即可用 `php -S` 或 `php bin/server.php` 运行演示。
+
+## 安装
+
+通过 Composer 安装：
+
+```bash
+composer require kianhugh/mtphp
+```
+
+> 也可直接克隆本仓库源码使用——框架**零依赖**，即使不装 Composer 也能运行演示与测试。
 
 ## 快速开始
 
