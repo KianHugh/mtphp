@@ -3,12 +3,23 @@
 [![CI](https://github.com/KianHugh/mtphp/actions/workflows/ci.yml/badge.svg)](https://github.com/KianHugh/mtphp/actions)
 [![Packagist](https://img.shields.io/packagist/v/kianhugh/mtphp.svg)](https://packagist.org/packages/kianhugh/mtphp)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
+[![Docs](https://img.shields.io/badge/docs-%E4%B8%AD%E6%96%87-blue)](http://mtphp.msiyu.com/docs)
 
 > 版权所有 (c) 武汉麦麦心选网络科技有限公司
 
 高性能、高并发的现代 PHP 框架。路由、数据库连接、事务、视图模板、中间件一应俱全，并内置轻量模型、文件缓存、文件日志，**零配置即可用、配有详尽中文注释**，原生支持 Swoole 常驻内存 + 协程 + 连接池。
 
-> 完整设计见 [DESIGN.md](./DESIGN.md)；**使用手册见 [使用手册.md](./使用手册.md)**。
+> 完整设计见 [DESIGN.md](./DESIGN.md)；**使用手册见 [使用手册.md](./使用手册.md)**；📚 **在线中文文档：<http://mtphp.msiyu.com/docs>**。
+
+## 为什么选 MTPHP
+
+- **零依赖，干净可控**：框架核心不引入任何第三方 Composer 包，仅依赖 PHP 内置扩展。无供应链风险、无版本地狱，源码一眼可查。
+- **零配置，开箱即跑**：数据库连接、缓存、日志、模板、路由缓存等核心组件默认即用，几行代码即可起服务，不必先啃一堆配置。
+- **现代 PHP 8 内核**：全面使用强类型、联合类型、枚举等 PHP 8 特性，类型安全、可维护性强。
+- **FPM + Swoole 双模式**：同一套代码既能在传统 FPM 下运行，也能在 Swoole 常驻内存下以协程 + 连接池承载高并发，按需切换。
+- **主流框架风格 API（思想借鉴·独立实现）**：`Route` / `DB` / `Model` / `View` / `Middleware` 等心智模型与主流框架一致，降低学习与迁移成本；内核为自主研发，非任何框架的 fork。
+- **自带测试与压测基座**：零依赖单元测试运行器（无需安装 PHPUnit）+ 零依赖 HTTP 压测工具，CI 一键跑绿。
+- **中文优先，注释详尽**：公共 API 与关键路径均配清晰中文注释，并附 29 章中文手册与自建文档站，对非英语开发者极度友好。
 
 ## 目录速览
 
@@ -30,11 +41,13 @@ runtime/      运行时生成（路由缓存 / 模板编译 / 日志）
 
 ## 安装
 
-通过 Composer 安装：
+通过 Composer 安装（推荐）：
 
 ```bash
 composer require kianhugh/mtphp
 ```
+
+📦 Packagist 包页：<https://packagist.org/packages/kianhugh/mtphp>　|　📚 中文文档：<http://mtphp.msiyu.com/docs>
 
 > 也可直接克隆本仓库源码使用——框架**零依赖**，即使不装 Composer 也能运行演示与测试。
 
@@ -73,12 +86,14 @@ php bin/server.php              # 默认 0.0.0.0:9501
 
 ## 文档站点
 
-框架自带一个用**自身**搭建的文档站，演示“调用简单、功能主流”：左侧目录菜单，右侧正文，当前首页内容直接作为文档序言。
+📚 **在线中文文档（已部署，无需本地启动即可浏览）**：<http://mtphp.msiyu.com/docs> —— 共 29 章，涵盖安装、路由、数据库、模型、模板、中间件、Swoole 常驻、测试与压测等全部主题。
+
+框架同时自带一个用**自身**搭建的文档站，演示“调用简单、功能主流”：左侧目录菜单，右侧正文，当前首页内容直接作为文档序言（本地开发时用）。
 
 ```bash
 # 启动后访问
 #   http://127.0.0.1:8080/docs        # 序言（即首页欢迎内容）
-#   http://127.0.0.1:8080/docs/1      # 章节（slug 为章节编号 1~22）
+#   http://127.0.0.1:8080/docs/1      # 章节（slug 为章节编号 1~29）
 ```
 
 文档源就是根目录的 `使用手册.md`，按二级标题（`##`）自动切分为章节并生成左菜单，手册与网站同源、永不失同步。
