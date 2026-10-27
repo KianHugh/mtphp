@@ -71,14 +71,6 @@ php -S 127.0.0.1:8080 serve.php # 启动内置服务器（开发演示；serve.p
 php bin/server.php              # 默认 0.0.0.0:9501
 ```
 
-## 当前进度
-
-- ✅ Phase 1~3：容器、路由（含编译缓存）、请求/响应、中间件、配置、PDO 数据库（查询构造器 + 事务）、模板引擎（编译缓存）
-- ✅ Phase 4：**PHP 8 化 + 高并发核心**——强类型 / 联合类型安全 / FPM 持久连接 / Swoole 常驻服务器 + 协程连接池
-- ✅ Phase 5：**轻量模型 / 文件缓存 / 文件日志 / 布局模板**——`Mtphp\Database\Model`（ORM-lite 静态 CRUD）、`Mtphp\Cache\Cache`、`Mtphp\Log\Logger`、`Mtphp\View` 布局（`@extends`/`@section`/`@yield`/`@parent`），均零配置可用、中文注释详尽
-- ✅ Phase 6：**单测体系 + 压测基准**——框架自带零依赖测试基座（`Mtphp\Testing\Assert` / `TestCase` + `tests/run.php` 运行器，无需装 PHPUnit）与零依赖 HTTP 压测工具（`bin/bench.php`，curl_multi 并发），均中文注释详尽
-- ✅ Phase 7：**文档站点**——用框架自身搭建的文档站（左菜单 + 右内容）：`mtphp/Markdown/Markdown.php` 零依赖 Markdown 渲染器、`app/Controllers/DocController.php` 按《使用手册.md》二级标题切分章节、`app/Views/docs/*`（布局 / 序言 / 章节页）；访问 `/docs` 进入，手册与网站自动同源、无需额外同步
-
 ## 设计原则
 
 - **使用简单、配置简单**：核心组件零配置即可用，开箱即跑。
@@ -86,14 +78,14 @@ php bin/server.php              # 默认 0.0.0.0:9501
 
 ## 文档站点
 
-📚 **在线中文文档（已部署，无需本地启动即可浏览）**：<http://mtphp.msiyu.com/docs> —— 共 29 章，涵盖安装、路由、数据库、模型、模板、中间件、Swoole 常驻、测试与压测等全部主题。
+📚 **在线中文文档（已部署，无需本地启动即可浏览）**：<http://mtphp.msiyu.com/docs> —— 共 28 章，涵盖安装、路由、数据库、模型、模板、中间件、Swoole 常驻、测试与压测等全部主题。
 
 框架同时自带一个用**自身**搭建的文档站，演示“调用简单、功能主流”：左侧目录菜单，右侧正文，当前首页内容直接作为文档序言（本地开发时用）。
 
 ```bash
 # 启动后访问
 #   http://127.0.0.1:8080/docs        # 序言（即首页欢迎内容）
-#   http://127.0.0.1:8080/docs/1      # 章节（slug 为章节编号 1~29）
+#   http://127.0.0.1:8080/docs/1      # 章节（slug 为章节编号 1~28）
 ```
 
 文档源就是根目录的 `使用手册.md`，按二级标题（`##`）自动切分为章节并生成左菜单，手册与网站同源、永不失同步。
